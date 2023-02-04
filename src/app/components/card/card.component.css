@@ -1,0 +1,74 @@
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    background: #333;
+    width: 15vw;
+    border-radius: 10px;
+    padding: 10px 0 10px 0;
+    margin-top: 32px;
+}
+
+.card-body {
+    background: #949393;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.card-title {
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+p {
+    color: #fff;
+    font: 18px bold;
+    text-align: center;
+}
+
+span {
+    color: #99ff00
+}
+
+button, .edit, .delete, .done {
+    background: #333;
+    border: none;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+button:hover {
+    font-weight: bold;
+}
+
+.edit {
+    color: rgb(3, 118, 153);
+}
+
+.delete {
+    color: #ff0000;
+}
+
+.done {
+    color: #99ff00;
+}
+
+span {
+    font-weight: bold;
+    cursor: pointer;
+    transition: .5s;
+}
+
+span:hover {
+    color: #7ecc0a;
+}

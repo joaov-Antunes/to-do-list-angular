@@ -1,0 +1,19 @@
+<div class="container" *ngFor="let task of tasks">
+    <div class="card">
+
+        <div class="card-header">
+            <p class="card-title">{{task.Nome}}</p>
+        </div>
+
+        <div class="card-body">
+            <p>Finalizar até: <span>31/02</span></p>
+        </div>
+        
+        <div class="card-footer">
+            <button class="edit" routerLink="/edit">Editar</button>
+            <button class="delete" (click)="deleteTask(task.Id)">Excluir</button>
+            <button class="done">Concluir</button>
+        </div>
+        
+    </div>
+</div>
