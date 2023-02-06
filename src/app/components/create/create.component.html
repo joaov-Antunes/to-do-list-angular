@@ -12,13 +12,10 @@
                 <p>Finalizar até: <span>31/02</span></p>
             </div>
             
-            <div class="card-footer" *ngIf="name == ''; else noRes">
-                <input type="submit" class="done">
+            <div class="card-footer">
+                <input type="submit" class="done" (click)="postTask()">
             </div>
 
-            <ng-template #noRes>
-                <input type="submit" class="done" (click)="postTask()">
-            </ng-template>
         </form>
         
     </div>
