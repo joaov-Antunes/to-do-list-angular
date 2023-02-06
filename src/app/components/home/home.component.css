@@ -3,3 +3,33 @@ h1 {
     text-align: center;
     margin-top: 32px;
 }
+
+.create {
+    background: #017b8b;
+    border: none;
+    border-radius: 10px;
+    height: 52px;
+    width: 150px;
+    font: 16px bold;
+    color: #fff;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.create:hover {
+    background: #01b6ce;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+app-card {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}

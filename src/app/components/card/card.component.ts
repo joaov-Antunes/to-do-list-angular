@@ -8,6 +8,7 @@ import { FetchService } from 'src/app/services/fetch.service';
 })
 export class CardComponent {
   tasks: any;
+  finish: string = 'Concluir até:';
   constructor(private fetchService: FetchService) {}
 
   ngOnInit(): void {
@@ -20,5 +21,12 @@ export class CardComponent {
     this.fetchService.deleteTask(id).subscribe();
     this.fetchService.getTasks()
     window.location.reload();
+  }
+
+  finishTask(id: number) {
+    this.finish = 'Concluida';
+    this.fetchService.finishTask(id).subscribe(res => {
+      console.log(res);
+    });
   }
 }

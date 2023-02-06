@@ -5,15 +5,24 @@
             <p class="card-title">{{task.Nome}}</p>
         </div>
 
-        <div class="card-body">
-            <p>Finalizar até: <span>31/02</span></p>
+        <div class="card-body" *ngIf="task.Feita == false; else isDone">
+            <p>Concluir até <span>31/02</span></p>
         </div>
+
+        <ng-template #isDone>
+
+            <div class="card-body">
+                <p>Concluída</p>
+            </div>
+                
+        </ng-template>
         
         <div class="card-footer">
-            <button class="edit" routerLink="/edit">Editar</button>
+            <button class="edit" [routerLink]="['/edit', task.Id]">Editar</button>
             <button class="delete" (click)="deleteTask(task.Id)">Excluir</button>
-            <button class="done">Concluir</button>
+            <button class="done" (click)="finishTask(task.Id)">Concluir</button>
         </div>
         
     </div>
+    
 </div>

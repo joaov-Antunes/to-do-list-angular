@@ -1,1 +1,25 @@
-<p>create works!</p>
+<div class="container">
+
+    <div class="card">
+        <p>{{name}}</p>
+        <form>
+            <div class="card-header">
+                <label for="task">Nome:</label>
+                <input type="text" name="task" id="task" [(ngModel)]="name">
+            </div>
+    
+            <div class="card-body">
+                <p>Finalizar até: <span>31/02</span></p>
+            </div>
+            
+            <div class="card-footer" *ngIf="name == ''; else noRes">
+                <input type="submit" class="done">
+            </div>
+
+            <ng-template #noRes>
+                <input type="submit" class="done" (click)="postTask()">
+            </ng-template>
+        </form>
+        
+    </div>
+</div>
