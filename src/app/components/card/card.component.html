@@ -1,28 +1,86 @@
-<div class="container" *ngFor="let task of tasks">
-    <div class="card">
+<div class="home-container" *ngIf="foundTask == null; else cardContainer">
 
-        <div class="card-header">
-            <p class="card-title">{{task.Nome}}</p>
+        <div class="form-container">
+            <form>
+                <input type="text" class="search-bar" [(ngModel)]="name" [ngModelOptions]="{standalone: true}" placeholder="Buscar Tarefa">
+                <input type="submit" class="submit" (click)="searchTask(name)">
+            </form>
         </div>
 
-        <div class="card-body" *ngIf="task.Feita == false; else isDone">
-            <p>Concluir até <span>31/02</span></p>
-        </div>
+        <div class="card-container" *ngFor="let task of tasks">
 
-        <ng-template #isDone>
-
-            <div class="card-body">
-                <p>Concluída</p>
-            </div>
-                
-        </ng-template>
+            <div class="card">
         
-        <div class="card-footer">
-            <button class="edit" [routerLink]="['/edit', task.Id]">Editar</button>
-            <button class="delete" (click)="deleteTask(task.Id)">Excluir</button>
-            <button class="done" (click)="finishTask(task.Id)">Concluir</button>
+                <div class="card-header">
+                    <p class="card-title">{{task.Nome}}</p>
+                </div>
+        
+                <div class="card-body" *ngIf="task.Feita == false; else isDone">
+                    <p>Urgência: <span>{{task.Urgencia}}</span></p>
+                    <p>Concluir até <span>{{task.DataFinal | date:'dd/MM'}}</span></p>
+                </div>
+        
+                <ng-template #isDone>
+        
+                    <div class="card-body">
+                        <p>Concluída</p>
+                    </div>
+                        
+                </ng-template>
+                
+                <div class="card-footer">
+                    <button class="edit" [routerLink]="['/edit', task.Id]">Editar</button>
+                    <button class="delete" (click)="deleteTask(task.Id)">Excluir</button>
+                    <label for="done" class="done">Concluir</label>
+                    <input type="checkbox" class="done" id="done" (change)="finishTask(task.Id, $event)" value="checked">
+                </div>
+                
+            </div>
+            
+        </div>
+
+</div>
+
+<ng-template #cardContainer>
+    <div class="home-container">
+
+        <div class="form-container">
+            <form>
+                <input type="text" class="search-bar" [(ngModel)]="name" [ngModelOptions]="{standalone: true}" placeholder="Buscar Tarefa">
+                <input type="submit" class="submit" (click)="searchTask(name)">
+            </form>
+        </div>
+
+        <div class="card-container" *ngFor="let task of foundTask">
+
+            <div class="card">
+        
+                <div class="card-header">
+                    <p class="card-title">{{task.Nome}}</p>
+                </div>
+        
+                <div class="card-body" *ngIf="task.Feita == false; else isDone">
+                    <p>Concluir até <span>{{task.DataFinal | date: 'dd/MM'}}</span></p>
+                </div>
+        
+                <ng-template #isDone>
+        
+                    <div class="card-body">
+                        <p>Concluída</p>
+                    </div>
+                        
+                </ng-template>
+                
+                <div class="card-footer">
+                    <button class="edit" [routerLink]="['/edit', task.Id]">Editar</button>
+                    <button class="delete" (click)="deleteTask(task.Id)">Excluir</button>
+                    <button class="done" (click)="finishTask(task.Id, $event)" value="checked">Concluir</button>
+                    <button class="voltar" (click)="reload()">Voltar</button>
+                </div>
+                
+            </div>
+            
         </div>
         
     </div>
-    
-</div>
+</ng-template>

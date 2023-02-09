@@ -11,6 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 import { CardComponent } from './components/card/card.component';
 import { CreateComponent } from './components/create/create.component';
 import { EditComponent } from './components/edit/edit.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { EditComponent } from './components/edit/edit.component';
     CardComponent,
     CreateComponent,
     EditComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,7 @@ import { EditComponent } from './components/edit/edit.component';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

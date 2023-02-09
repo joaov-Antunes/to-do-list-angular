@@ -1,0 +1,30 @@
+.form-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+.search-bar {
+    border-bottom: 1px solid #fff;
+    background: #000;
+    outline: none;
+    color: #fff;
+    height: 46px;
+    padding-left: 5px;
+}
+
+.submit {
+    margin-left: 10px;
+    background-color: #017b8b;
+    height: 52px;
+    width: 150px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.submit:hover {
+    background: #01b6ce;
+}

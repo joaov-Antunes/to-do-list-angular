@@ -10,27 +10,36 @@ export class FetchService {
 
   getTasks() {
     return this.http.get('http://localhost:3000/tasks');
-  }
+  };
   
   getTaskById(id: number) {
     console.log(id)
     return this.http.get(`http://localhost:3000/tasks/${id}`);
-  }
+  };
 
   deleteTask(id: number) {
     console.log(id)
     return this.http.delete(`http://localhost:3000/tasks/${id}`);
-  }
+  };
 
-  createTask(name: string) {
-    return this.http.post('http://localhost:3000/tasks', {Nome: name, Feita: false});
-  }
+  createTask(name: string, urgency: string) {
+    return this.http.post('http://localhost:3000/tasks', {Nome: name, Feita: false, Urgencia: urgency});
+  };
 
-  updateTask(id: number, name: string) {
-    return this.http.put(`http://localhost:3000/tasks/${id}`, {Nome: name});
-  }
+  updateTask(id: number, name: string, urgency: string) {
+    return this.http.put(`http://localhost:3000/tasks/${id}`, {Nome: name, Urgencia: urgency});
+  };
 
   finishTask(id: number) {
     return this.http.put(`http://localhost:3000/tasks/${id}`, {Feita: true});
+  };
+
+  searchTask(name: string) {
+    console.log(name);
+    return this.http.post(`http://localhost:3000/tasks/search`, {Nome: name});
+  };
+
+  getTaskByName(name: string) {
+    return this.http.get(`http://localhost:3000/tasks/search/${name}`);
   }
 }

@@ -10,9 +10,10 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent {
+  urgency: string = '';
   tasks: any;
   id: any;
-  name: string = '';
+  
   constructor(private fetch: FetchService, private route: ActivatedRoute, private router: Router, private toastr: ToastrService) {}
 
   ngOnInit() {
@@ -27,19 +28,20 @@ export class EditComponent {
     console.log(id);
   }
 
-  editTask(id: number, name: string) {
-    if (this.name == '') {
+  editTask(id: number, name: string, urgency: string) {
+    if (this.tasks.Nome == '' || this.urgency == '') {
+      console.log(name)
       this.toastr.error('Preencha os campos em branco antes de continuar.', 'Erro', {
         timeOut: 3000,
       })
     } else {
-      this.fetch.updateTask(id, name).subscribe(res => {
+      this.fetch.updateTask(id, name, urgency).subscribe(res => {
         console.log(res);
         this.toastr.success('Tarefa atualizada com sucesso', 'sucesso')
       });
       setTimeout(() => {
         this.router.navigate(['/home']);
-      }, 5000);
+      }, 50);
     }
   }
 }

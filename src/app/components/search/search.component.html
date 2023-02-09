@@ -1,0 +1,7 @@
+<div class="form-container">
+    <form>
+        <input type="text" class="search-bar" [(ngModel)]="name" [ngModelOptions]="{standalone: true}" placeholder="Buscar Tarefa">
+        <input type="submit" class="submit" (click)="searchTask(name)">
+    </form>
+</div>
+

@@ -9,24 +9,25 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent {
-  public newTaskName: string = ''
-  name: string = ''
+  newTaskName: string = '';
+  name: string = '';
+  urgency: string = '';
   constructor(private fetch: FetchService, private router: Router, private toastr: ToastrService) {}
 
   postTask() {
-    if(this.name == '') {
+    if(this.name == '' || this.urgency == '') {
       this.toastr.error('Preenhcha os campos em branco antes de continuar', 'Erro', {
         timeOut: 3500
       });
     } else {
       this.toastr.success('Tarefa criada com sucesso', 'Sucesso!')
-      this.fetch.createTask(this.name).subscribe(res => {
+      this.fetch.createTask(this.name, this.urgency).subscribe(res => {
         console.log(res);
       });
       setTimeout(() => {
         this.router.navigate(['/home']);
-      }, 50)
-    }
+      }, 50);
+    };
     
   };
 };

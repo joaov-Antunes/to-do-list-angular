@@ -1,5 +1,11 @@
-.container {
+.home-container {
     display: flex;
+    flex-direction: column;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: row;
     justify-content: center;
 }
 
@@ -15,6 +21,8 @@
     background: #949393;
     height: 100px;
     display: flex;
+    flex-direction: column;
+    gap: 20px;
     align-items: center;
     justify-content: center;
 }
@@ -33,6 +41,7 @@ p {
     color: #fff;
     font: 18px bold;
     text-align: center;
+    font-family: 'Montserrat', sans-serif;
 }
 
 span {
@@ -65,10 +74,39 @@ button:hover {
 
 span {
     font-weight: bold;
+}
+
+.form-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+.search-bar {
+    border-bottom: 1px solid #fff;
+    background: #000;
+    outline: none;
+    color: #fff;
+    height: 46px;
+    padding-left: 5px;
+}
+
+.search-bar::placeholder {
+    color: #fff;
+}
+
+.submit {
+    margin-left: 10px;
+    background-color: #017b8b;
+    height: 52px;
+    width: 150px;
+    border-radius: 10px;
+    color: #fff;
     cursor: pointer;
     transition: .5s;
 }
 
-span:hover {
-    color: #7ecc0a;
+.submit:hover {
+    background: #01b6ce;
 }

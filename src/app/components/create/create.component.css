@@ -13,15 +13,17 @@
 
 .card-body {
     background: #949393;
-    height: 100px;
+    height: 200px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 20px;
 }
 
 .card-footer {
     display: flex;
-    justify-content: space-evenly;
+    flex-direction: column;
 }
 
 .card-title {
@@ -33,6 +35,7 @@ p {
     color: #fff;
     font: 18px bold;
     text-align: center;
+    font-family: 'Montserrat', sans-serif;
 }
 
 span {
@@ -48,7 +51,16 @@ span {
     transition: .5s;
 }
 
-.done:hover {
+.go-back {
+    background: #333;
+    color: #ff0000;
+    border: none;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.done:hover, .go-back:hover {
     font-weight: bold;
 }
 
@@ -69,4 +81,8 @@ label {
 input {
     width: 100%;
     outline: none;
+}
+
+#date {
+    width: 40%;
 }
