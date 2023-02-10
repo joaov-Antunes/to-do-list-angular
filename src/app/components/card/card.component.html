@@ -17,7 +17,7 @@
         
                 <div class="card-body" *ngIf="task.Feita == false; else isDone">
                     <p>Urgência: <span>{{task.Urgencia}}</span></p>
-                    <p>Concluir até <span>{{task.DataFinal | date:'dd/MM'}}</span></p>
+                    <p>Concluir até <span class="date">{{task.DataFinal | date:'dd/MM'}}</span></p>
                 </div>
         
                 <ng-template #isDone>

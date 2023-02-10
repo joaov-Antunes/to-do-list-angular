@@ -22,12 +22,12 @@ export class FetchService {
     return this.http.delete(`http://localhost:3000/tasks/${id}`);
   };
 
-  createTask(name: string, urgency: string) {
-    return this.http.post('http://localhost:3000/tasks', {Nome: name, Feita: false, Urgencia: urgency});
+  createTask(name: string, urgency: string, formatedDate: string) {
+    return this.http.post('http://localhost:3000/tasks', {Nome: name, Feita: false, Urgencia: urgency, DataFinal: formatedDate});
   };
 
-  updateTask(id: number, name: string, urgency: string) {
-    return this.http.put(`http://localhost:3000/tasks/${id}`, {Nome: name, Urgencia: urgency});
+  updateTask(id: number, name: string, urgency: string, date: string) {
+    return this.http.put(`http://localhost:3000/tasks/${id}`, {Nome: name, Urgencia: urgency, DataFinal: date});
   };
 
   finishTask(id: number) {

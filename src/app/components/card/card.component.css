@@ -45,7 +45,11 @@ p {
 }
 
 span {
-    color: #99ff00
+    color: #d87300;
+}
+
+.date {
+    color: #99ff00;
 }
 
 button, .edit, .delete, .done {

@@ -5,12 +5,12 @@
         <form>
             <div class="card-header">
                 <label for="task">Nome:</label>
-                <input type="text" name="task" id="task" [(ngModel)]="task.Nome">
+                <input type="text" name="task" id="task" [(ngModel)]="name">
             </div>
     
             <div class="card-body">
             <label for="">Finalizar até:</label>
-            <input type="date" name="date" id="date">
+            <input type="date" name="date" id="date" [(ngModel)]="date">
             <label for="urgency">Nível de urgência</label>
             <select #level id="urgency" name="urgency" [(ngModel)]="urgency">
                 <option value="">Selecionar</option>
@@ -20,7 +20,7 @@
               </select>
             </div>
             
-            <div class="card-footer">
+            <div class="card-footer"> 
                 <input type="submit" class="done" (click)="postTask()">
                 <button class="go-back" routerLink="/home">Voltar</button>
             </div>
