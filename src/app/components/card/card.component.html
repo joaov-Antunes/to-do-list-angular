@@ -7,16 +7,16 @@
             </form>
         </div>
 
-        <div class="card-container" *ngFor="let task of tasks">
+        <div class="card-container">
 
-            <div class="card">
+            <div class="card" *ngFor="let task of tasks">
         
                 <div class="card-header">
                     <p class="card-title">{{task.Nome}}</p>
                 </div>
         
                 <div class="card-body" *ngIf="task.Feita == false; else isDone">
-                    <p>Urgência: <span>{{task.Urgencia}}</span></p>
+                    <p>Urgência: <span class="urgency">{{task.Urgencia}}</span></p>
                     <p>Concluir até <span class="date">{{task.DataFinal | date:'dd/MM'}}</span></p>
                 </div>
         
@@ -32,7 +32,7 @@
                     <button class="edit" [routerLink]="['/edit', task.Id]">Editar</button>
                     <button class="delete" (click)="deleteTask(task.Id)">Excluir</button>
                     <label for="done" class="done">Concluir</label>
-                    <input type="checkbox" class="done" id="done" (change)="finishTask(task.Id, $event)" value="checked">
+                    <input type="checkbox" class="done" id="done" (click)="finishTask(task.Id)" [(ngModel)]="task.Feita">
                 </div>
                 
             </div>
@@ -60,6 +60,7 @@
                 </div>
         
                 <div class="card-body" *ngIf="task.Feita == false; else isDone">
+                    <p>Urgência: <span class="urgency">{{task.Urgencia}}</span></p>
                     <p>Concluir até <span>{{task.DataFinal | date: 'dd/MM'}}</span></p>
                 </div>
         
@@ -74,7 +75,8 @@
                 <div class="card-footer">
                     <button class="edit" [routerLink]="['/edit', task.Id]">Editar</button>
                     <button class="delete" (click)="deleteTask(task.Id)">Excluir</button>
-                    <button class="done" (click)="finishTask(task.Id, $event)" value="checked">Concluir</button>
+                    <label for="done" class="done">Concluir</label>
+                    <input  type="checkbox" class="done" (click)="finishTask(task.Id)" [(ngModel)]="done">
                     <button class="voltar" (click)="reload()">Voltar</button>
                 </div>
                 

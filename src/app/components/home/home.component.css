@@ -29,11 +29,3 @@ h1 {
 .footer button {
     margin-bottom: 32px;
 }
-
-app-card {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-}

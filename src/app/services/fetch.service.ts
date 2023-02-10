@@ -30,8 +30,8 @@ export class FetchService {
     return this.http.put(`http://localhost:3000/tasks/${id}`, {Nome: name, Urgencia: urgency, DataFinal: date});
   };
 
-  finishTask(id: number) {
-    return this.http.put(`http://localhost:3000/tasks/${id}`, {Feita: true});
+  finishTask(id: number, done: boolean) {
+    return this.http.put(`http://localhost:3000/tasks/${id}`, {Feita: done});
   };
 
   searchTask(name: string) {

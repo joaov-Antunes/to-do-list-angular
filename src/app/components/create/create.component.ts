@@ -31,6 +31,5 @@ export class CreateComponent {
         this.router.navigate(['/home']);
       }, 50);
     };
-    
   };
 };
