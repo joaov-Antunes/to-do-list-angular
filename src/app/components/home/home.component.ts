@@ -7,13 +7,5 @@ import { Component } from "@angular/core";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  constructor(private fetch: FetchService) {}
-  tasks: any;
-
-  ngOnInit() {
-    this.fetch.getTasks().subscribe(res => {
-      console.log(res);
-      this.tasks = res
-    });
-  }
+  
 }

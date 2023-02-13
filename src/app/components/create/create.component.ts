@@ -10,21 +10,20 @@ import * as moment from 'moment';
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent {
-  newTaskName: string = '';
-  name: string = '';
-  urgency: string = '';
-  date: string = '';
+    name: string = '';
+    date: string = '';
+  
   constructor(private fetch: FetchService, private router: Router, private toastr: ToastrService) {}
 
   postTask() {
-    if(this.name == '' || this.urgency == '', this.date == '') {
+    if(this.name == '' || this.date == '') {
       this.toastr.error('Preenhcha os campos em branco antes de continuar', 'Erro', {
         timeOut: 3500
       });
     } else {
       this.toastr.success('Tarefa criada com sucesso', 'Sucesso!');
       const formatedDate = moment().format(this.date);
-      this.fetch.createTask(this.name, this.urgency, formatedDate).subscribe(res => {
+      this.fetch.createTask(this.name, formatedDate).subscribe(res => {
         console.log(res);
       });
       setTimeout(() => {

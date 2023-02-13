@@ -77,7 +77,7 @@
                     <button class="delete" (click)="deleteTask(task.Id)">Excluir</button>
                     <label for="done" class="done">Concluir</label>
                     <input  type="checkbox" class="done" (click)="finishTask(task.Id)" [(ngModel)]="done">
-                    <button class="voltar" (click)="reload()">Voltar</button>
+                    <button class="voltar" (click)="getTasks()">Voltar</button>
                 </div>
                 
             </div>

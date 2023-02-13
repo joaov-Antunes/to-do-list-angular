@@ -22,8 +22,8 @@ export class FetchService {
     return this.http.delete(`http://localhost:3000/tasks/${id}`);
   };
 
-  createTask(name: string, urgency: string, formatedDate: string) {
-    return this.http.post('http://localhost:3000/tasks', {Nome: name, Feita: false, Urgencia: urgency, DataFinal: formatedDate});
+  createTask(name: string, formatedDate: string) {
+    return this.http.post('http://localhost:3000/tasks', {Nome: name, Feita: false, DataFinal: formatedDate});
   };
 
   updateTask(id: number, name: string, urgency: string, date: string) {

@@ -25,11 +25,15 @@ export class CardComponent {
   constructor(private fetch: FetchService, private toastr: ToastrService) {}
 
   ngOnInit(): void {
-    console.log(this.finish)
+    this.getTasks();
+  };
+
+  getTasks() {
     this.fetch.getTasks().subscribe(res => {
       this.tasks = res;
-    })
-  };
+      console.log(res);
+    });
+  }
 
   deleteTask(id: number) {
     this.swalWithBootstrapButtons.fire({
@@ -48,9 +52,7 @@ export class CardComponent {
           'Your file has been deleted.',
           'success'
         )
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000)
+        this.getTasks();
       } else if (
         result.dismiss === Swal.DismissReason.cancel
       ) {
@@ -90,9 +92,5 @@ export class CardComponent {
         return this.foundTask = [res];
       })
     };
-  }
-
-  reload() {
-    window.location.reload()
   }
 }
