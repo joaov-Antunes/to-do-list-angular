@@ -10,9 +10,15 @@ import * as moment from 'moment';
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent {
+<<<<<<< HEAD
     name: string = '';
     date: string = '';
   
+=======
+  name: string = '';
+  urgency: string = '';
+  date: string = '';
+>>>>>>> a4ae376640587d1f0613e77db60f249bfb478abe
   constructor(private fetch: FetchService, private router: Router, private toastr: ToastrService) {}
 
   postTask() {
