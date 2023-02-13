@@ -10,7 +10,6 @@ import * as moment from 'moment';
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent {
-  newTaskName: string = '';
   name: string = '';
   urgency: string = '';
   date: string = '';
