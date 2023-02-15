@@ -15,7 +15,7 @@
                     <p class="card-title">{{task.Nome}}</p>
                 </div>
         
-                <div class="card-body" *ngIf="task.Feita == false; else isDone">
+                <div class="card-body" *ngIf="task.Feita == 'Pendente'; else isDone">
                     <p>Urgência: <span class="urgency">{{task.Urgencia}}</span></p>
                     <p>Concluir até <span class="date">{{task.DataFinal | date:'dd/MM'}}</span></p>
                 </div>
@@ -31,8 +31,13 @@
                 <div class="card-footer">
                     <button class="edit" [routerLink]="['/edit', task.Id]">Editar</button>
                     <button class="delete" (click)="deleteTask(task.Id)">Excluir</button>
-                    <label for="done" class="done">Concluir</label>
-                    <input type="checkbox" class="done" id="done" (click)="finishTask(task.Id)" [(ngModel)]="task.Feita">
+                    <div class="done-container">
+                        <label for="done" class="done">Status</label>
+                        <input type="checkbox" class="done" id="done" [(ngModel)]="status" (click)="setStatus(task.Id)" [(ngModel)]="task.StatusTarefa">
+                        <select id="urgency" name="urgency" [(ngModel)]="done" (change)="finishTask(task.Id)" [(ngModel)]="task.Feita">
+                            <option *ngFor="let done of doneTable" [value]="done.Feita">{{done.Feita}}</option>
+                        </select>
+                    </div>
                 </div>
                 
             </div>
@@ -76,7 +81,7 @@
                     <button class="edit" [routerLink]="['/edit', task.Id]">Editar</button>
                     <button class="delete" (click)="deleteTask(task.Id)">Excluir</button>
                     <label for="done" class="done">Concluir</label>
-                    <input  type="checkbox" class="done" (click)="finishTask(task.Id)" [(ngModel)]="done">
+                    <input  type="checkbox" class="done" (click)="finishTask(task.Id)" [(ngModel)]="task.StatusTarefa">
                     <button class="voltar" (click)="getTasks()">Voltar</button>
                 </div>
                 

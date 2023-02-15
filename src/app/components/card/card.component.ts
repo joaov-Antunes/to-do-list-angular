@@ -13,7 +13,10 @@ export class CardComponent {
   finish: string = 'Concluir até:';
   name: string = '';
   foundTask: any;
-  done: boolean = false;
+  done: string = '';
+  status: boolean = false;
+  doneTable: any;
+  IsItDone: string = '';
   swalWithBootstrapButtons = Swal.mixin({
     customClass: {
       confirmButton: 'btn btn-success',
@@ -26,6 +29,7 @@ export class CardComponent {
 
   ngOnInit(): void {
     this.getTasks();
+    this.getDone();
   };
 
   getTasks() {
@@ -33,6 +37,13 @@ export class CardComponent {
       this.tasks = res;
       console.log(res);
     });
+  }
+
+  getDone() {
+    this.fetch.getDone().subscribe(res => {
+      this.doneTable = res;
+      console.log(res);
+    })
   }
 
   deleteTask(id: number) {
@@ -66,19 +77,17 @@ export class CardComponent {
   }
   
   finishTask(id: number) {
-    if(this.done == true) {
-      this.done = false;
-      this.finish = 'Concluir até:';
-      this.fetch.finishTask(id, this.done).subscribe(res => {
-        console.log(res);
-      });
-    } else {
-      this.done = true;
-      this.finish = 'Concluída';
-      this.fetch.finishTask(id, this.done).subscribe(res => {
-        console.log(res);
-      });
-    };
+    this.finish = '';
+    this.fetch.finishTask(id, this.done).subscribe(res => {
+    console.log(res);
+    });
+    this.getTasks();
+  };
+
+  setStatus(id: number) {
+    this.fetch.setStatus(id, this.status).subscribe(res => {
+      console.log(res);
+    })
   }
 
   searchTask(name: string) {

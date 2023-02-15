@@ -12,6 +12,7 @@ import * as moment from 'moment'
 })
 export class EditComponent {
   urgency: string = '';
+  levels: any;
   tasks: any;
   id: any;
   date: string = '';
@@ -21,6 +22,7 @@ export class EditComponent {
   ngOnInit() {
     this.route.params.subscribe(params => this.id = params['id']);
     this.getTasks(this.id);
+    this.getUrgency();
   }
 
   getTasks(id: number) {
@@ -30,8 +32,14 @@ export class EditComponent {
     console.log(id);
   }
 
+  getUrgency() {
+    this.fetch.getUrgency().subscribe(res => {
+      return this.levels = res;
+    })
+  }
+
   editTask(id: number, name: string, urgency: string, date: string) {
-    if (this.tasks.Nome == '' || this.urgency == '', this.date == '') {
+    if (this.tasks.Nome == '' || this.urgency == '' || this.date == '') {
       console.log(name)
       this.toastr.error('Preencha os campos em branco antes de continuar.', 'Erro', {
         timeOut: 3000,
