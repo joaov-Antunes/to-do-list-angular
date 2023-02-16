@@ -1,0 +1,35 @@
+<div class="container">
+
+        <div class="register">
+    
+            <div class="form-container">
+                <div class="form-register">
+                    <div class="register-header">
+                        <h1>Não possui conta?</h1>
+                        <p>Efetue seu cadastro</p>
+                    </div>
+                    <label for="name">Nome</label>
+                    <Input type="text" name="name" ngDefaultControl [(ngModel)]="name" [ngModelOptions]="{standalone: true}">
+                    <label for="user">Nome de Usuário</label>
+                    <Input type="text" name="user" ngDefaultControl [(ngModel)]="username" [ngModelOptions]="{standalone: true}">
+                    <label for="user">Senha</label>
+                    <Input type="password" name="password" ngDefaultControl [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
+                    <button (click)="register()">Enviar</button>
+                </div>
+                    
+                <div class="form-login">
+                    <div class="register-header">
+                        <h1>Já possui conta?</h1>
+                        <p>Efetue seu login</p>
+                    </div>
+                    <label for="name">Nome</label>
+                    <Input type="text" name="name" ngDefaultControl [(ngModel)]="loginName" [ngModelOptions]="{standalone: true}" class="login-input">
+                    <label for="user">Senha</label>
+                    <Input type="password" name="name" ngDefaultControl [(ngModel)]="loginPassword" [ngModelOptions]="{standalone: true}" class="login-input">
+                    <button (click)="login()" class="login-button">Enviar</button>
+                </div>
+            </div>
+            
+        </div>
+    
+</div>

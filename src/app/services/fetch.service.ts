@@ -54,4 +54,12 @@ export class FetchService {
   getUrgency() {
     return this.http.get((`http://localhost:3000/urgency`));
   };
+
+  register(name: string, username: string, password: string) {
+    return this.http.post('http://localhost:3000/register', {Nome: name, NomeUsuario: username, Senha: password});
+  };
+
+  login(name: string, password: string) {
+    return this.http.post('http://localhost:3000/login', {NomeUsuario: name, Senha: password});
+  };
 }
