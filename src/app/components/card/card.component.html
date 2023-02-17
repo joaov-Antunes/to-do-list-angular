@@ -24,6 +24,8 @@
         
                     <div class="card-body">
                         <p>Concluída</p>
+                        <label for="done" class="done">Status</label>
+                        <input type="checkbox" class="done" id="done" [(ngModel)]="status" (click)="setStatus(task.Id)" [(ngModel)]="task.StatusTarefa">
                     </div>
                         
                 </ng-template>
@@ -32,8 +34,7 @@
                     <button class="edit" [routerLink]="['/edit', task.Id]">Editar</button>
                     <button class="delete" (click)="deleteTask(task.Id)">Excluir</button>
                     <div class="done-container">
-                        <label for="done" class="done">Status</label>
-                        <input type="checkbox" class="done" id="done" [(ngModel)]="status" (click)="setStatus(task.Id)" [(ngModel)]="task.StatusTarefa">
+                        
                         <select id="urgency" name="urgency" [(ngModel)]="done" (change)="finishTask(task.Id)" [(ngModel)]="task.Feita">
                             <option *ngFor="let done of doneTable" [value]="done.Feita">{{done.Feita}}</option>
                         </select>

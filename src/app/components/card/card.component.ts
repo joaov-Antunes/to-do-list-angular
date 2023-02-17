@@ -35,14 +35,12 @@ export class CardComponent {
   getTasks() {
     this.fetch.getTasks().subscribe(res => {
       this.tasks = res;
-      console.log(res);
     });
   }
 
   getDone() {
     this.fetch.getDone().subscribe(res => {
       this.doneTable = res;
-      console.log(res);
     })
   }
 

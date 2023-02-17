@@ -9,9 +9,9 @@
                         <p>Efetue seu cadastro</p>
                     </div>
                     <label for="name">Nome</label>
-                    <Input type="text" name="name" ngDefaultControl [(ngModel)]="name" [ngModelOptions]="{standalone: true}">
+                    <Input type="text" name="name" ngDefaultControl [(ngModel)]="name" [ngModelOptions]="{standalone: true}" autocomplete="off">
                     <label for="user">Nome de Usuário</label>
-                    <Input type="text" name="user" ngDefaultControl [(ngModel)]="username" [ngModelOptions]="{standalone: true}">
+                    <Input type="text" name="user" ngDefaultControl [(ngModel)]="username" [ngModelOptions]="{standalone: true}" autocomplete="off">
                     <label for="user">Senha</label>
                     <Input type="password" name="password" ngDefaultControl [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
                     <button (click)="register()">Enviar</button>
@@ -23,9 +23,9 @@
                         <p>Efetue seu login</p>
                     </div>
                     <label for="name">Nome</label>
-                    <Input type="text" name="name" ngDefaultControl [(ngModel)]="loginName" [ngModelOptions]="{standalone: true}" class="login-input">
+                    <Input type="text" name="name" ngDefaultControl [(ngModel)]="loginName" [ngModelOptions]="{standalone: true}" class="login-input" autocomplete="off">
                     <label for="user">Senha</label>
-                    <Input type="password" name="name" ngDefaultControl [(ngModel)]="loginPassword" [ngModelOptions]="{standalone: true}" class="login-input">
+                    <Input type="password" name="name" ngDefaultControl [(ngModel)]="loginPassword" [ngModelOptions]="{standalone: true}" class="login-input" autocomplete="false">
                     <button (click)="login()" class="login-button">Enviar</button>
                 </div>
             </div>

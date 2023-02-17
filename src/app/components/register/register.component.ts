@@ -33,10 +33,10 @@ export class RegisterComponent {
         Swal.fire({
           icon: 'error',
           title: 'Erro',
-          text: 'Senha ou Usuário não invalidos.'
+          text: 'Senha ou Usuário invalidos.'
         });
       } else {
-        this.router.navigate(['/home']);
+        
       }
       console.log(res);
     });

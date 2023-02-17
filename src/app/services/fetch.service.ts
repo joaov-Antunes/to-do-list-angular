@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,9 @@ export class FetchService {
   constructor(private http: HttpClient) { }
 
   getTasks() {
-    return this.http.get('http://localhost:3000/tasks');
+    let headers = new HttpHeaders();
+    headers.append('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6Miwia…xNjJ9.V8Y0MbKBkCI_OMJfkOntiR0IGfjIqKQseDtj2W_5pWg');
+    return this.http.get('http://localhost:3000/tasks', { headers: headers });
   };
   
   getTaskById(id: number) {
