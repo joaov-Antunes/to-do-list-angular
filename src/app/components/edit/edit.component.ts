@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { FetchService } from 'src/app/services/fetch.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import * as moment from 'moment'
+import axios from 'axios';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-edit',
@@ -17,7 +17,7 @@ export class EditComponent {
   id: any;
   date: string = '';
   
-  constructor(private fetch: FetchService, private route: ActivatedRoute, private router: Router, private toastr: ToastrService) {}
+  constructor(private route: ActivatedRoute, private router: Router, private toastr: ToastrService) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => this.id = params['id']);
@@ -26,15 +26,17 @@ export class EditComponent {
   }
 
   getTasks(id: number) {
-    this.fetch.getTaskById(id).subscribe(res => {
-      return this.tasks = [res];
-    });
+    axios.get(`http://localhost:3000/tasks/${id}`)
+    .then(res => {
+      this.tasks = [res.data];
+    })
     console.log(id);
   }
 
   getUrgency() {
-    this.fetch.getUrgency().subscribe(res => {
-      return this.levels = res;
+    axios.get('http://localhost:3000/urgency')
+    .then(res => {
+      this.levels = res.data;
     })
   }
 
@@ -46,9 +48,14 @@ export class EditComponent {
       });
     } else {
       const formatedData = moment().format(this.date);
-      this.fetch.updateTask(id, name, urgency, formatedData).subscribe(res => {
-        console.log(res);
-        this.toastr.success('Tarefa atualizada com sucesso', 'sucesso')
+      axios.put(`http://localhost:3000/tasks/${id}`, {
+        Nome: name,
+        DataFinal: formatedData,
+        Urgencia: urgency
+      })
+      .then(res => {
+        console.log(res.data);
+        this.toastr.success('Tarefa atualizada com sucesso', 'sucesso');
       });
       setTimeout(() => {
         this.router.navigate(['/home']);

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { FetchService } from 'src/app/services/fetch.service';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 @Component({
   selector: 'app-card',
@@ -25,22 +26,43 @@ export class CardComponent {
     buttonsStyling: false
   })
   
-  constructor(private fetch: FetchService, private toastr: ToastrService) {}
+  constructor(private toastr: ToastrService, private router: Router) {}
 
   ngOnInit(): void {
-    this.getTasks();
-    this.getDone();
+    const token = localStorage.getItem('x-access-token');
+    if(token == null) {
+      console.log('No token provided');
+    } else {
+      this.getDone();
+      this.getTasks();
+    }
   };
 
+  logout() {
+    localStorage.removeItem('x-access-token');
+    this.router.navigate(['/login']);
+  }
+
   getTasks() {
-    this.fetch.getTasks().subscribe(res => {
-      this.tasks = res;
-    });
+    const token = localStorage.getItem('x-access-token')
+    axios.get('http://localhost:3000/tasks', {
+      headers: {
+        'x-access-token': token,
+      }
+    })
+    .then(res => {
+      this.tasks = res.data;
+      console.log(res.data);
+    })
   }
 
   getDone() {
-    this.fetch.getDone().subscribe(res => {
-      this.doneTable = res;
+    axios.get('http://localhost:3000/finish')
+    .then(res => {
+      this.doneTable = res.data
+    })
+    .catch(err => {
+      console.log(err);
     })
   }
 
@@ -55,7 +77,7 @@ export class CardComponent {
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {
-        this.fetch.deleteTask(id).subscribe();
+        axios.delete(`http://localhost:3000/tasks/${id}`)
         this.swalWithBootstrapButtons.fire(
           'Deleted!',
           'Your file has been deleted.',
@@ -74,17 +96,28 @@ export class CardComponent {
     })
   }
   
-  finishTask(id: number) {
-    this.finish = '';
-    this.fetch.finishTask(id, this.done).subscribe(res => {
-    console.log(res);
-    });
-    this.getTasks();
+  finishTask(id: number, done: string) {
+    axios.put(`http://localhost:3000/tasks/${id}`, {
+      Feita: done
+    })
+    .then(res => {
+      console.log(res.data);
+      this.getTasks();
+    })
+    .catch(err => {
+      console.log(err);
+    })
   };
 
-  setStatus(id: number) {
-    this.fetch.setStatus(id, this.status).subscribe(res => {
-      console.log(res);
+  setStatus(id: number, done: boolean) {
+    axios.put(`http://localhost:3000/tasks/${id}`, {
+      StatusTarefa: done
+    })
+    .then(res => {
+      console.log(res.data);
+    })
+    .catch(err => {
+      console.log(err);
     })
   }
 
@@ -94,9 +127,13 @@ export class CardComponent {
         timeOut: 3500
       });
     } else {
-      this.fetch.getTaskByName(name).subscribe(res => {
-        console.log(res);
-        return this.foundTask = [res];
+      axios.get(`http://localhost:3000/tasks/search/${name}`)
+      .then(res => {
+        console.log(res.data);
+        return this.foundTask = [res.data];
+      })
+      .catch(err => {
+        console.log(err);
       })
     };
   }

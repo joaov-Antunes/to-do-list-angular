@@ -11,6 +11,7 @@
 body {
     background: #000;
     user-select: none;
+    padding: 0 100px 0 100px;
 }
 
 .toast-container .ngx-toastr {

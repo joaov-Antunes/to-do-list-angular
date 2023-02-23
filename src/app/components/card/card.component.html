@@ -1,5 +1,5 @@
 <div class="home-container" *ngIf="foundTask == null; else cardContainer">
-
+    <button class="logout" (click)="logout()">Sair</button>
         <div class="form-container">
             <form>
                 <input type="text" class="search-bar" [(ngModel)]="name" [ngModelOptions]="{standalone: true}" placeholder="Buscar Tarefa">
@@ -22,11 +22,23 @@
         
                 <ng-template #isDone>
         
-                    <div class="card-body">
+                    <div class="card-body" *ngIf="task.StatusTarefa == false; else isActive">
                         <p>Concluída</p>
-                        <label for="done" class="done">Status</label>
-                        <input type="checkbox" class="done" id="done" [(ngModel)]="status" (click)="setStatus(task.Id)" [(ngModel)]="task.StatusTarefa">
+                        <div class="isActive">
+                            <label for="done" class="done" class="active">Status</label>
+                            <input type="checkbox" class="done" id="done" (click)="setStatus(task.Id, task.StatusTarefa)" [(ngModel)]="task.StatusTarefa">
+                        </div>
                     </div>
+
+                <ng-template #isActive>
+                    <div class="card-body">
+                        <p>Ativa</p>
+                        <div class="isActive">
+                            <label for="done" class="done" class="active">Status</label>
+                            <input type="checkbox" class="done" id="done" (click)="setStatus(task.Id, task.StatusTarefa)" [(ngModel)]="task.StatusTarefa">
+                        </div>
+                    </div>
+                </ng-template>
                         
                 </ng-template>
                 
@@ -35,7 +47,7 @@
                     <button class="delete" (click)="deleteTask(task.Id)">Excluir</button>
                     <div class="done-container">
                         
-                        <select id="urgency" name="urgency" [(ngModel)]="done" (change)="finishTask(task.Id)" [(ngModel)]="task.Feita">
+                        <select id="urgency" name="urgency" [(ngModel)]="task.Feita" (change)="finishTask(task.Id, task.Feita)">
                             <option *ngFor="let done of doneTable" [value]="done.Feita">{{done.Feita}}</option>
                         </select>
                     </div>
@@ -81,8 +93,9 @@
                 <div class="card-footer">
                     <button class="edit" [routerLink]="['/edit', task.Id]">Editar</button>
                     <button class="delete" (click)="deleteTask(task.Id)">Excluir</button>
-                    <label for="done" class="done">Concluir</label>
-                    <input  type="checkbox" class="done" (click)="finishTask(task.Id)" [(ngModel)]="task.StatusTarefa">
+                    <select id="urgency" name="urgency" [(ngModel)]="task.Feita" (change)="finishTask(task.Id, task.Feita)">
+                        <option *ngFor="let done of doneTable" [value]="done.Feita">{{done.Feita}}</option>
+                    </select>
                     <button class="voltar" (click)="getTasks()">Voltar</button>
                 </div>
                 

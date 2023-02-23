@@ -12,7 +12,7 @@
             <label for="">Finalizar até:</label>
             <input type="date" name="date" id="date" [(ngModel)]="date">
             <label for="urgency">Nível de urgência</label>
-            <select id="urgency" name="urgency" >
+            <select id="urgency" name="urgency" [(ngModel)]="urgency">
                 <option *ngFor="let level of levels" [value]="level.Nivel" >{{level.Nivel}}</option>
             </select>
             </div>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { FetchService } from 'src/app/services/fetch.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 @Component({
   selector: 'app-register',
@@ -15,31 +15,63 @@ export class RegisterComponent {
   loginName: string = '';
   loginPassword = '';
 
-  constructor(private fetch: FetchService, private router: Router) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
     
   }
 
   register() {
-    this.fetch.register(this.name, this.username, this.password).subscribe(res => {
-      console.log(res);
-    });
+    if(this.name == '' || this.username == '', this.password == '') {
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro',
+        text: 'Preencha os campos em branco antes de prosseguir',
+      })
+    } else {
+      axios.post('http://localhost:3000/register', {
+        Nome: this.name,
+        NomeUsuario: this.username,
+        Senha: this.password
+      })
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    }
   };
 
   login() {
-    this.fetch.login(this.loginName, this.loginPassword).subscribe(res => {
-      if (res == null) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Erro',
-          text: 'Senha ou Usuário invalidos.'
-        });
-      } else {
-        
-      }
-      console.log(res);
-    });
-  };
+    if(this.loginName == "" || this.loginPassword == "") {
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro',
+        text: 'Preencha os campos em branco antes de prosseguir',
+      })
+    } else {
+        axios.post('http://localhost:3000/login', {
+          NomeUsuario: this.loginName,
+          Senha: this.loginPassword
+        })
+        .then(res => {
+          localStorage.setItem('x-access-token', res.data.token);
+          console.log(res.data.token);
 
-}
+          if(res.data.token != null) {
+            this.router.navigate(['/home']);
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Erro',
+              text: 'Senha ou usuário inválidos',
+            });
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    };
+  };
+};

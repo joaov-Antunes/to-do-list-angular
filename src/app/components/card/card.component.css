@@ -5,6 +5,7 @@
 
 .card-container {
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
 }
@@ -45,6 +46,16 @@
 .card-title {
     color: #fff;
     margin-bottom: 10px;
+}
+
+.logout {
+    color: #fff;
+    background: red;
+    width: 150px;
+    height: 52px;
+    border-radius: 10px;
+    margin: 0 auto;
+    margin-top: 18px;
 }
 
 label:hover {
@@ -144,4 +155,13 @@ span {
     p {
         font-size: 12px;
     }
+}
+
+.active {
+    background: #949393;
+}
+
+.isActive {
+    display: flex;
+    gap: 5px;
 }

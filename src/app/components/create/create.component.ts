@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { FetchService } from 'src/app/services/fetch.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import axios from 'axios'
 import * as moment from 'moment';
 
 @Component({
@@ -13,32 +13,37 @@ export class CreateComponent {
     levels: any;
     name: string = '';
     date: string = '';
-  constructor(private fetch: FetchService, private router: Router, private toastr: ToastrService) {}
-
-
+    urgency: string = '';
+  constructor(private router: Router, private toastr: ToastrService) {}
 
   ngOnInit() {
-    this.fetch.getUrgency().subscribe(res => {
-      return this.levels = res;
+    axios.get('http://localhost:3000/urgency')
+    .then(res => {
+      this.levels = res.data
     })
   }
-    
-
-
+  
   postTask() {
-    if(this.name == '' || this.date == '') {
+    if(this.name == '' || this.date == '' || this.urgency == '') {
       this.toastr.error('Preenhcha os campos em branco antes de continuar', 'Erro', {
         timeOut: 3500
       });
     } else {
-      this.toastr.success('Tarefa criada com sucesso', 'Sucesso!');
       const formatedDate = moment().format(this.date);
-      this.fetch.createTask(this.name, formatedDate).subscribe(res => {
-        console.log(res);
-      });
-      setTimeout(() => {
+      axios.post('http://localhost:3000/tasks', {
+        Nome: this.name,
+        DataFinal: formatedDate,
+        Urgencia: this.urgency,
+        Feita: 'Pendente'
+      })
+      .then(res => {
+        this.toastr.success('Tarefa criada com sucesso', 'Sucesso!');
+        console.log([res.data]);
         this.router.navigate(['/home']);
-      }, 50);
+      })
+      .catch(err => {
+        console.error(err);
+      })
     };
   };
 };
