@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,7 @@ export class RegisterComponent {
   loginName: string = '';
   loginPassword = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private toastr: ToastrService) {}
 
   ngOnInit() {
     
@@ -35,6 +36,7 @@ export class RegisterComponent {
         Senha: this.password
       })
       .then(res => {
+        this.toastr.success('Cadastro efetuado com sucesso', 'sucesso');
         console.log(res.data);
       })
       .catch(err => {
@@ -56,20 +58,20 @@ export class RegisterComponent {
           Senha: this.loginPassword
         })
         .then(res => {
-          localStorage.setItem('x-access-token', res.data.token);
-          console.log(res.data.token);
-
           if(res.data.token != null) {
+            localStorage.setItem('x-access-token', res.data.token);
+            console.log(res.data.token);
             this.router.navigate(['/home']);
           } else {
-            Swal.fire({
-              icon: 'error',
-              title: 'Erro',
-              text: 'Senha ou usuário inválidos',
-            });
+            
           }
         })
         .catch(err => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Erro',
+            text: 'Senha ou usuário inválidos',
+          });
           console.log(err);
         })
     };

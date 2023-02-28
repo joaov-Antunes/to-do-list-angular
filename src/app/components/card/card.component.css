@@ -49,13 +49,8 @@
 }
 
 .logout {
-    color: #fff;
-    background: red;
     width: 150px;
-    height: 52px;
-    border-radius: 10px;
     margin: 0 auto;
-    margin-top: 18px;
 }
 
 label:hover {
@@ -69,32 +64,16 @@ p {
     font-family: 'Montserrat', sans-serif;
 }
 
+.button {
+    color: #fff;
+}
+
 span {
     color: #99ff00;
 }
 
 .date {
     color: #99ff00;
-}
-
-button, .edit, .delete, .done {
-    background: #333;
-    border: none;
-    margin-top: 10px;
-    cursor: pointer;
-    transition: .5s;
-}
-
-button:hover {
-    font-weight: bold;
-}
-
-.edit {
-    color: rgb(3, 118, 153);
-}
-
-.delete {
-    color: #ff0000;
 }
 
 .done {
@@ -144,6 +123,11 @@ span {
     color: #01b6ce;
 }
 
+.stats {
+    width: 150px;
+    margin: 0 auto;
+}
+
 @media(max-width: 1004px) {
     .card-footer {
         flex-direction: column;
@@ -164,4 +148,8 @@ span {
 .isActive {
     display: flex;
     gap: 5px;
+}
+
+.btn-lg {
+    margin-top: 18px;
 }

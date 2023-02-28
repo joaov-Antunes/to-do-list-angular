@@ -1,5 +1,6 @@
 <div class="home-container" *ngIf="foundTask == null; else cardContainer">
-    <button class="logout" (click)="logout()">Sair</button>
+    <button class="btn btn-danger btn-lg logout" (click)="logout()">Sair</button>
+    <button class="btn btn-primary btn-lg stats" routerLink="/charts">Estatísticas</button>
         <div class="form-container">
             <form>
                 <input type="text" class="search-bar" [(ngModel)]="name" [ngModelOptions]="{standalone: true}" placeholder="Buscar Tarefa">
@@ -43,8 +44,8 @@
                 </ng-template>
                 
                 <div class="card-footer">
-                    <button class="edit" [routerLink]="['/edit', task.Id]">Editar</button>
-                    <button class="delete" (click)="deleteTask(task.Id)">Excluir</button>
+                    <button class="btn btn-outline-info" [routerLink]="['/edit', task.Id]">Editar</button>
+                    <button type="button" class="btn btn-outline-danger"(click)="deleteTask(task.Id)">Excluir</button>
                     <div class="done-container">
                         
                         <select id="urgency" name="urgency" [(ngModel)]="task.Feita" (change)="finishTask(task.Id, task.Feita)">
@@ -92,7 +93,7 @@
                 
                 <div class="card-footer">
                     <button class="edit" [routerLink]="['/edit', task.Id]">Editar</button>
-                    <button class="delete" (click)="deleteTask(task.Id)">Excluir</button>
+                    <button type="button" class="btn btn-danger"(click)="deleteTask(task.Id)" >Excluir</button>
                     <select id="urgency" name="urgency" [(ngModel)]="task.Feita" (change)="finishTask(task.Id, task.Feita)">
                         <option *ngFor="let done of doneTable" [value]="done.Feita">{{done.Feita}}</option>
                     </select>
