@@ -22,7 +22,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 52px;
+    height: 100px;
 }
 
 .card-body {
@@ -30,27 +30,24 @@
     height: 100px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
     align-items: center;
     justify-content: center;
 }
 
 .card-footer {
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    height: 52px;
+    height: 100px;
     font-size: 12px;
+    gap: 20px;
 }
 
 .card-title {
     color: #fff;
     margin-bottom: 10px;
-}
-
-.logout {
-    width: 150px;
-    margin: 0 auto;
 }
 
 label:hover {
@@ -80,6 +77,16 @@ span {
     color: #99ff00;
 }
 
+.done-container {
+    display: flex;
+    gap: 20px;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+}
+
 span {
     font-weight: bold;
 }
@@ -106,13 +113,6 @@ span {
 
 .submit {
     margin-left: 10px;
-    background-color: #017b8b;
-    height: 52px;
-    width: 150px;
-    border-radius: 10px;
-    color: #fff;
-    cursor: pointer;
-    transition: .5s;
 }
 
 .submit:hover {
@@ -123,9 +123,8 @@ span {
     color: #01b6ce;
 }
 
-.stats {
+.stats, .logout {
     width: 150px;
-    margin: 0 auto;
 }
 
 @media(max-width: 1004px) {
@@ -150,6 +149,13 @@ span {
     gap: 5px;
 }
 
-.btn-lg {
-    margin-top: 18px;
+.top-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+}
+
+.form-inline {
+    display: flex;
+    gap: 10px;
 }

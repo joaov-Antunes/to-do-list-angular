@@ -13,7 +13,7 @@
             <input type="date" name="date" id="date" [(ngModel)]="date">
             <label for="urgency">Nível de urgência</label>
             <div class="input-group mb-3">
-                <select class="custom-select" id="inputGroupSelect02" [(ngModel)]="urgency">
+                <select class="custom-select" id="inputGroupSelect02" [(ngModel)]="urgency" [ngModelOptions]="{standalone: true}">
                     <option *ngFor="let level of levels" [value]="level.Nivel" >{{level.Nivel}}</option>
                 </select>
                 <div class="input-group-append">

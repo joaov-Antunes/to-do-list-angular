@@ -1,11 +1,14 @@
 <div class="home-container" *ngIf="foundTask == null; else cardContainer">
-    <button class="btn btn-danger btn-lg logout" (click)="logout()">Sair</button>
-    <button class="btn btn-primary btn-lg stats" routerLink="/charts">Estatísticas</button>
+        <div class="top-buttons">
+            <button class="btn btn-danger btn-lg logout" (click)="logout()">Sair</button>
+            <button class="btn btn-primary btn-lg stats" routerLink="/charts">Estatísticas</button>
+        </div>
+    
         <div class="form-container">
-            <form>
-                <input type="text" class="search-bar" [(ngModel)]="name" [ngModelOptions]="{standalone: true}" placeholder="Buscar Tarefa">
-                <input type="submit" class="submit" (click)="searchTask(name)">
-            </form>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" [(ngModel)]="name" [ngModelOptions]="{standalone: true}" placeholder="Buscar Tarefa" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="searchTask(name)">Buscar</button>
+                </form>
         </div>
 
         <div class="card-container">
@@ -44,14 +47,18 @@
                 </ng-template>
                 
                 <div class="card-footer">
-                    <button class="btn btn-outline-info" [routerLink]="['/edit', task.Id]">Editar</button>
-                    <button type="button" class="btn btn-outline-danger"(click)="deleteTask(task.Id)">Excluir</button>
+                    <div class="buttons">
+                        <button class="btn btn-outline-info" [routerLink]="['/edit', task.Id]">Editar</button>
+                        <button type="button" class="btn btn-outline-danger"(click)="deleteTask(task.Id)">Excluir</button>
+                    </div>
+                    
                     <div class="done-container">
-                        
                         <select id="urgency" name="urgency" [(ngModel)]="task.Feita" (change)="finishTask(task.Id, task.Feita)">
                             <option *ngFor="let done of doneTable" [value]="done.Feita">{{done.Feita}}</option>
                         </select>
+                        <input type="file" class="form-control" id="customFile"/>
                     </div>
+                    
                 </div>
                 
             </div>
@@ -64,9 +71,9 @@
     <div class="home-container">
 
         <div class="form-container">
-            <form>
-                <input type="text" class="search-bar" [(ngModel)]="name" [ngModelOptions]="{standalone: true}" placeholder="Buscar Tarefa">
-                <input type="submit" class="submit" (click)="searchTask(name)">
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" [(ngModel)]="name" [ngModelOptions]="{standalone: true}" placeholder="Buscar Tarefa" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="searchTask(name)">Buscar</button>
             </form>
         </div>
 
@@ -92,12 +99,14 @@
                 </ng-template>
                 
                 <div class="card-footer">
-                    <button class="edit" [routerLink]="['/edit', task.Id]">Editar</button>
-                    <button type="button" class="btn btn-danger"(click)="deleteTask(task.Id)" >Excluir</button>
+                    <button class="btn btn-outline-info" [routerLink]="['/edit', task.Id]">Editar</button>
+                    <button type="button" class="btn btn-outline-danger"(click)="deleteTask(task.Id)" >Excluir</button>
+                    
+                    <button class="btn btn-outline-primary" (click)="getTasks()">Voltar</button>
                     <select id="urgency" name="urgency" [(ngModel)]="task.Feita" (change)="finishTask(task.Id, task.Feita)">
                         <option *ngFor="let done of doneTable" [value]="done.Feita">{{done.Feita}}</option>
                     </select>
-                    <button class="voltar" (click)="getTasks()">Voltar</button>
+                    
                 </div>
                 
             </div>

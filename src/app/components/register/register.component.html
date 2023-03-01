@@ -1,35 +1,79 @@
-<div class="container">
+        <div class="container">
 
-        <div class="register">
-    
-            <div class="form-container">
-                <div class="form-register">
-                    <div class="register-header">
-                        <h1>Não possui conta?</h1>
-                        <p>Efetue seu cadastro</p>
-                    </div>
-                    <label for="name">Nome</label>
-                    <Input type="text" name="name" ngDefaultControl [(ngModel)]="name" [ngModelOptions]="{standalone: true}" autocomplete="off">
-                    <label for="user">Nome de Usuário</label>
-                    <Input type="text" name="user" ngDefaultControl [(ngModel)]="username" [ngModelOptions]="{standalone: true}" autocomplete="off">
-                    <label for="user">Senha</label>
-                    <Input type="password" name="password" ngDefaultControl [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
-                    <button (click)="register()">Enviar</button>
+            <div class="btn-container">
+                <div class="title">
+                    <h2>Já possui conta?</h2>
+                    <p>Efetue seu cadastro</p>
                 </div>
-                    
-                <div class="form-login">
-                    <div class="register-header">
-                        <h1>Já possui conta?</h1>
-                        <p>Efetue seu login</p>
-                    </div>
-                    <label for="name">Nome</label>
-                    <Input type="text" name="name" ngDefaultControl [(ngModel)]="loginName" [ngModelOptions]="{standalone: true}" class="login-input" autocomplete="off">
-                    <label for="user">Senha</label>
-                    <Input type="password" name="name" ngDefaultControl [(ngModel)]="loginPassword" [ngModelOptions]="{standalone: true}" class="login-input" autocomplete="false">
-                    <button (click)="login()" class="login-button">Enviar</button>
-                </div>
+                <button class="btn btn-primary btn-lg" (click)="loginTemplate.show()">Entrar</button>
             </div>
             
-        </div>
+            <div class="btn-container">
+                <div class="title">
+                    <h2>Não possui conta?</h2>
+                    <p>Efetue seu login</p>
+                </div>
+                <button class="btn btn-success btn-lg" (click)="registerTemplate.show()">Cadastrar</button>
+            </div>
+
+            <div bsModal #loginTemplate="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name2">
+                <div class="modal-dialog modal-sm">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 id="dialog-sizes-name2" class="modal-title pull-left">Login</h4>
+                      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="loginTemplate.hide()">
+                        <span aria-hidden="true" class="visually-hidden">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Usuário:</label>
+                              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nome de de usuário" [(ngModel)]="loginName" [ngModelOptions]="{standalone: true}">
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleInputPassword1">Senha:</label>
+                              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" [(ngModel)]="loginPassword" [ngModelOptions]="{standalone: true}">
+                            </div>
+                            <button type="submit" class="btn btn-primary submit" (click)="login()">Enviar</button>
+                          </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
     
-</div>
+              <div bsModal #registerTemplate="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name2">
+                <div class="modal-dialog modal-sm">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 id="dialog-sizes-name2" class="modal-title pull-left">Cadastro</h4>
+                      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="registerTemplate.hide()">
+                        <span aria-hidden="true" class="visually-hidden">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Nome:</label>
+                              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nome" [(ngModel)]="name" [ngModelOptions]="{standalone: true}">
+                            </div>
+    
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Nome de usuário:</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nome de usuário" [(ngModel)]="username" [ngModelOptions]="{standalone: true}">
+                            </div>
+    
+                            <div class="form-group">
+                              <label for="exampleInputPassword1">Senha:</label>
+                              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha" [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
+                            </div>
+                            <button type="submit" class="btn btn-primary submit" (click)="register()">Enviar</button>
+                          </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+
+
+        
