@@ -1,5 +1,6 @@
 @import '../node_modules/ngx-toastr/toastr.css';
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 * {
     padding: 0;
@@ -11,6 +12,7 @@
 body {
     background: #000;
     user-select: none;
+    padding: 0 100px 0 100px;
 }
 
 .toast-container .ngx-toastr {

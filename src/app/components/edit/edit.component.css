@@ -13,15 +13,16 @@ h1 {
 
 .card {
     background: #333;
-    width: 15vw;
+    width: 25vw;
     border-radius: 10px;
     padding: 10px 0 10px 0;
     margin-top: 32px;
+    margin-bottom: 32px;
 }
 
 .card-body {
     background: #949393;
-    height: 200px;
+    height: 250px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -49,26 +50,9 @@ span {
     color: #99ff00
 }
 
-.done {
-    background: #333;
-    color: #99ff00;
-    border: none;
-    margin-top: 10px;
-    cursor: pointer;
-    transition: .5s;
-}
-
-.go-back {
-    background: #333;
-    color: #ff0000;
-    border: none;
-    margin-top: 10px;
-    cursor: pointer;
-    transition: .5s;
-}
-
-.done:hover, .go-back:hover {
-    font-weight: bold;
+.btn {
+    margin-top: 18px;
+    color: #fff;
 }
 
 span {
@@ -92,4 +76,14 @@ input {
 
 #date {
     width: 50%;
+}
+
+.input-group-text {
+    color: #fff;
+    background: #333;
+    border: none;
+}
+
+.input-group {
+    justify-content: center;
 }

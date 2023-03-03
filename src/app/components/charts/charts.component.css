@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.go-back {
+    width: 150px;
+    height: 52px;
+    border: none;
+    border-radius: 10px;
+    background: #037699;
+    color: #fff;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.go-back:hover {
+    background-color: #01b6ce;
+}

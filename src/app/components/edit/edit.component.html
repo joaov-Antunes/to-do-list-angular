@@ -12,14 +12,19 @@
                 <label for="">Finalizar até:</label>
                 <input type="date" name="date" id="date" [(ngModel)]="date">
                 <label for="urgency">Nível de urgência</label>
-                <select id="urgency" name="urgency" [(ngModel)]="urgency" >
-                    <option *ngFor="let level of levels" [value]="level.Nivel" >{{level.Nivel}}</option>
-                </select>
+                <div class="input-group mb-3">
+                    <select class="custom-select" id="inputGroupSelect02" [(ngModel)]="urgency" [ngModelOptions]="{standalone: true}">
+                        <option *ngFor="let level of levels" [value]="level.Nivel">{{level.Nivel}}</option>
+                    </select>
+                    <div class="input-group-append">
+                      <label class="input-group-text" for="inputGroupSelect02">Escolha</label>
+                    </div>
+                </div>
             </div>
             
             <div class="card-footer">
-                <input type="submit" class="done" (click)="editTask(task.Id, task.Nome, urgency, date)">
-                <button class="go-back" routerLink="/home">Voltar</button>
+                <input type="submit" class="btn btn-outline-success" (click)="editTask(task.Id, task.Nome, urgency, date)">
+                <button class="btn btn-danger" routerLink="/home">Voltar</button>
             </div>
             
         </form>
