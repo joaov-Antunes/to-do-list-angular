@@ -36,9 +36,11 @@ export class RegisterComponent {
           text: 'Senha ou Usuário invalidos.'
         });
       } else {
-        
+        localStorage.setItem('login', JSON.stringify(res));
+        this.router.navigate(['/home'])
       }
-      console.log(res);
+      let getLogin = localStorage.getItem('login');
+      console.log(getLogin);
     });
   };
 

@@ -8,4 +8,10 @@ import { Component } from "@angular/core";
 })
 export class HomeComponent {
   
+  constructor(private fetch: FetchService) {}
+
+  logout() {
+    const response  = localStorage.removeItem('login');
+    console.log(response);
+  }
 }

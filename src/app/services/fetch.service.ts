@@ -9,9 +9,11 @@ export class FetchService {
   constructor(private http: HttpClient) { }
 
   getTasks() {
-    let headers = new HttpHeaders();
-    headers.append('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6Miwia…xNjJ9.V8Y0MbKBkCI_OMJfkOntiR0IGfjIqKQseDtj2W_5pWg');
-    return this.http.get('http://localhost:3000/tasks', { headers: headers });
+    const header = new HttpHeaders()
+    const login = localStorage.getItem('login');
+    header.append('x-access-token', JSON.stringify(login));
+    console.log(login);
+    return this.http.get('http://localhost:3000/tasks', { headers: header });
   };
   
   getTaskById(id: number) {
@@ -62,6 +64,7 @@ export class FetchService {
   };
 
   login(name: string, password: string) {
-    return this.http.post('http://localhost:3000/login', {NomeUsuario: name, Senha: password});
+    const response = this.http.post('http://localhost:3000/login', {NomeUsuario: name, Senha: password});
+    return response 
   };
 }
