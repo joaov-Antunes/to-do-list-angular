@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import { ToastrService } from 'ngx-toastr';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-register',
@@ -46,22 +47,6 @@ export class RegisterComponent {
   };
 
   login() {
-<<<<<<< HEAD
-    this.fetch.login(this.loginName, this.loginPassword).subscribe(res => {
-      if (res == null) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Erro',
-          text: 'Senha ou Usuário invalidos.'
-        });
-      } else {
-        localStorage.setItem('login', JSON.stringify(res));
-        this.router.navigate(['/home'])
-      }
-      let getLogin = localStorage.getItem('login');
-      console.log(getLogin);
-    });
-=======
     if(this.loginName == "" || this.loginPassword == "") {
       Swal.fire({
         icon: 'error',
@@ -91,6 +76,5 @@ export class RegisterComponent {
           console.log(err);
         })
     };
->>>>>>> fed20fa4a6fdf5bd900f01b099af52dcddaa27bc
   };
 };

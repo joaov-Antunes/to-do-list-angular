@@ -23,7 +23,8 @@ export class CreateComponent {
     axios.get('http://localhost:3000/urgency')
     .then(res => {
       this.levels = res.data
-    })
+    });
+    
   }
   
   postTask() {
@@ -33,7 +34,7 @@ export class CreateComponent {
       });
     } else {
       const formatedDate = moment().format(this.date);
-      axios.post(environment.urlApi + 'task', {
+      axios.post(environment.urlApi + 'tasks', {
         Nome: this.name,
         DataFinal: formatedDate,
         Urgencia: this.urgency,
@@ -68,8 +69,6 @@ export class CreateComponent {
         .catch(err => {
           console.log(err);
         });
-      }
-    
+      } 
   }
-
 };
